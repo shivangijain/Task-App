@@ -1,0 +1,25 @@
+<div class="container">
+  <% if @posts.present? %>
+    <% @posts.each do |post| %>
+      <div class='separate-post'>
+        <div class = 'row'>
+           <div class='col'><h4><%= post.title%></h4></div><br/>
+        </div>
+        <div class = 'row'>
+           <% if post.pictures&.first.present?%>
+              <div class='col-xs-6' ><%= image_tag post.pictures.first.image.url, style: 'height:80%;width:80%;' %></div>
+            <%end %>
+        </div>
+        <div class='row'>
+          <% if current_user == post.user %>
+            <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary button-width'%>
+            <%= link_to 'delete', post_path(post), method: :delete, class: 'btn btn-danger button-width'%>
+          <% end %>
+        </div>
+      </div>
+      <%= commontator_thread(post) %>
+    <% end %>
+  <% else %>
+    <h3>No Posts!!!</h3>
+  <% end %>
+</div>

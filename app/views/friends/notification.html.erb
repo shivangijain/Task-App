@@ -1,0 +1,11 @@
+<div class="container">
+	<h1>All Notifications</h1>
+    <% @notifications.each do |notification|%>
+      <div class="row">
+        <div class="col">
+          <%=link_to notification.actor.username, friend_path(notification.actor) %> is posted a new post <%= link_to notification.target.title, post_path(notification.target)%>
+        </div>
+      </div> 
+      <br/>
+    <% end %>
+</div>

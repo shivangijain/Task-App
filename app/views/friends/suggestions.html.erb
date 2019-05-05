@@ -1,0 +1,21 @@
+<div class="container">
+  <% @suggestions.each do |suggestion|%>
+    <div class="row">
+      <div class="col-xs-4">
+        <%= link_to suggestion.username, friend_path(suggestion) %>
+      </div>
+      <div class="col-xs-4">
+        <% if current_user.friends_with?(suggestion)%>
+          <%= link_to 'Friends', '#', class: 'btn btn-default button-width'%>
+        <% elsif current_user.requested_friends.include?(suggestion)%>
+          <%= link_to 'Accept', accept_friend_friends_path(id: suggestion.id), method: :post, class: 'btn btn-primary button-width'%>
+        <% elsif current_user.pending_friends.include?(suggestion) %>
+          <%= link_to 'Cancel', cancel_friend_friends_path(id: suggestion.id), method: :post, class: 'btn btn-danger button-width'%>
+        <% else %>
+          <%= link_to 'Add Friend', add_friend_friends_path(id: suggestion.id), method: :post, class: 'btn btn-primary button-width'%>
+        <% end %>
+      </div>
+     </div> 
+     <br/>
+  <% end %>
+</div>

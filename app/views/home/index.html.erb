@@ -1,0 +1,20 @@
+<div class="container">
+	<div class="post-btn"><%= link_to 'Create Post', new_post_path, class: 'btn btn-primary pull-right' %></div>
+	<% @posts.each do |post| %>
+		<div class='separate-post'>
+			<div class='row'>
+				<div class='col-xs-4'><h4 class='username'><%= link_to post.user.username, friend_path(post.user) %></h4></div>
+				<p><%= time_ago_in_words(post.updated_at)%></p><br/>
+			</div>
+			<div class = 'row'>
+				 <div class='col'><h4><%= post.title%></h4></div><br/>
+			</div>
+			<div class = 'row'>
+				 <% if post.pictures&.first.present?%>
+						<div class='col-xs-6' ><%= image_tag post.pictures.first.image.url, style: 'height:80%;width:80%;' %></div>
+					<%end %>
+			</div>
+		</div>
+		<%= commontator_thread(post) %>
+	<% end %>
+</div>

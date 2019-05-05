@@ -1,0 +1,17 @@
+<div class="container">
+  <% if @all_requests.present? %>
+    <% @all_requests.each do |friend_request|%>
+      <div class="row">
+        <div class="col-xs-2">
+          <%= link_to friend_request.username, friend_path(friend_request) %>
+        </div>
+        <div class="col-xs-4">
+          <%= link_to 'Accept', accept_friend_friends_path(id: friend_request.id), method: :post, class: 'btn btn-primary button-width'%>
+        </div>
+      </div> 
+      <br/>
+    <% end %>
+  <% else %>
+    <h3>No friend request present</h3>
+  <% end %>
+</div>

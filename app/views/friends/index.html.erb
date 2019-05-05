@@ -1,0 +1,17 @@
+<div class="container">
+  <% if @all_friends.present? %>
+    <% @all_friends.each do |friend|%>
+      <div class="row">
+        <div class="col-xs-2">
+          <%= link_to friend.username, friend_path(friend) %>
+        </div>
+        <div class="col-xs-4">
+          <%= link_to 'Friends', '#', class: 'btn btn-default button-width'%>
+        </div>
+       </div> 
+       <br/>
+    <% end %>
+  <% else %>
+    <h3>You have no Friends</h3>
+  <% end %>
+</div>

@@ -1,0 +1,23 @@
+  <%= nested_form_for @post, :html => {:class => "form-horizontal center", multipart: true} do |f| %>
+    <%= render partial: '/shared/error', locals: {object: f.object}%>
+    <div class="form-group">
+      <%= f.label :title, "Title:", class: "col-md-4 control-label" %>
+      <div class="col-md-8">
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+    </div>
+    <%= f.fields_for :pictures, @picture do |p|%>
+      <div class="form-group">
+        <%= p.label :image, "Upload Profile:", class: "col-md-4 control-label" %>
+        <div class="col-md-8">
+          <%= p.file_field :image, class: "form-control" %>
+        </div>
+      </div>
+    <% end %>
+    
+    <div class="checkbox">
+      <%= f.check_box :public %> Public
+    </div>
+
+    <%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
+ <% end %>
