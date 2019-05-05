@@ -1,4 +1,5 @@
-class Home < ApplicationRecord
-	acts_as_commontable
+# frozen_string_literal: true
 
+class Home < ApplicationRecord
+  acts_as_commontable
 end
