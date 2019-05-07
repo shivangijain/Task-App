@@ -7,6 +7,10 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :pictures
   acts_as_commontable dependent: :destroy
 
+  # Validations
+  validates_presence_of :title
+
+
   # Scopes
   default_scope -> { where(deleted: false) }
   scope :posts, ->(user, friend_ids) { where('user_id IN (?) OR user_id = ? OR public = ?', friend_ids, user.id, true).order(updated_at: :desc) }
