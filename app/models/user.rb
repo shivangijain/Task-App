@@ -2,6 +2,10 @@
 
 class User < ApplicationRecord
   attr_accessor :pictures_attributes
+  # devise
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+         
   # Association
   has_friendship
   has_many :pictures, as: :picturable
@@ -9,9 +13,6 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :pictures
   acts_as_commontator
 
-  # devise
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
 
   # Validations
   validates :email, presence: true, uniqueness: true
